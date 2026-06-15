@@ -1,4 +1,4 @@
-/*
+
 :root {
   --gold: #c9a84c;
   --gold-light: #e8c97a;
@@ -21,7 +21,6 @@ body {
 }
 
 /* NAV */
-/*
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -40,7 +39,7 @@ nav {
   color: var(--muted); text-decoration: none; font-size: 13px;
   letter-spacing: 1px; text-transform: uppercase; font-weight: 500;
   transition: color 0.2s;
-}rr
+}
 .nav-links a:hover { color: var(--gold); }
 .nav-cta {
   background: var(--gold); color: var(--dark);
@@ -52,7 +51,6 @@ nav {
 .nav-cta:hover { background: var(--gold-light); }
 
 /* HERO */
-/*
 .hero {
   min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
@@ -127,8 +125,7 @@ nav {
 .hero-info-item .label { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
 .hero-info-item .val { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); margin-top: 4px; }
 
-/* SECTION COMMONS*/
-/*
+/* SECTION COMMONS */
 section { padding: 90px 5%; }
 .sec-header { text-align: center; margin-bottom: 60px; }
 .sec-tag {
@@ -147,7 +144,6 @@ section { padding: 90px 5%; }
 }
 
 /* CATEGORY TABS */
-/*
 .menu-section { background: var(--dark2); }
 .tab-bar {
   display: flex; flex-wrap: wrap; gap: 8px;
@@ -166,7 +162,6 @@ section { padding: 90px 5%; }
 }
 
 /* MENU GRID */
-/*
 .menu-panel { display: none; }
 .menu-panel.active { display: block; animation: fadeIn 0.4s ease; }
 .menu-grid {
@@ -203,7 +198,7 @@ section { padding: 90px 5%; }
   color: var(--muted); font-weight: 400; display: block;
 }
 
-/* SET MENU *//*
+/* SET MENU */
 .set-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -236,7 +231,117 @@ section { padding: 90px 5%; }
 .set-price sup { font-size: 16px; }
 .set-note { font-size: 11px; color: #c0745a; margin-top: 6px; letter-spacing: 0.5px; }
 
-/* INFO STRIP *//*
+/* ===================== SPACES SECTION ===================== */
+.spaces-section { background: var(--dark2); padding: 90px 5%; }
+
+/* Main dining — full-width hero photo + two sub-photos */
+.spaces-main-dining {
+  margin-bottom: 70px;
+}
+.spaces-main-dining .dining-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 420px 260px;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+.spaces-main-dining .dining-photos .photo-tall {
+  grid-row: 1 / 3;
+  position: relative; overflow: hidden;
+}
+.spaces-main-dining .dining-photos .photo-small {
+  position: relative; overflow: hidden;
+}
+.spaces-main-dining .dining-photos img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+.spaces-main-dining .dining-photos .photo-tall:hover img,
+.spaces-main-dining .dining-photos .photo-small:hover img {
+  transform: scale(1.04);
+}
+.dining-desc {
+  display: flex; align-items: flex-start; gap: 40px; flex-wrap: wrap;
+}
+.dining-desc-text { flex: 1; min-width: 240px; }
+.dining-desc-text h3 {
+  font-family: 'Playfair Display', serif; font-size: 26px;
+  color: var(--text); margin-bottom: 10px;
+}
+.dining-desc-text p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+.dining-desc-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.space-badge {
+  border: 1px solid rgba(201,168,76,0.35);
+  color: var(--gold); font-size: 11px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 6px 14px;
+}
+
+/* Rooms grid — 2 or 3 columns */
+.spaces-rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 6px;
+}
+.space-room-card {
+  position: relative; overflow: hidden;
+  background: var(--dark3);
+}
+.space-room-card img {
+  width: 100%; height: 280px; object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.space-room-card:hover img { transform: scale(1.05); }
+.space-room-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(13,13,13,0.92) 0%, transparent 100%);
+  padding: 28px 24px 22px;
+}
+.space-room-tag {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+}
+.space-room-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; color: var(--text); margin-bottom: 6px;
+}
+.space-room-desc {
+  font-size: 12px; color: rgba(240,234,214,0.6); line-height: 1.6;
+}
+
+/* No-photo cards for meeting / conference */
+.space-room-card.no-photo {
+  min-height: 280px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  border: 1px solid rgba(201,168,76,0.15);
+}
+.space-room-card.no-photo .space-room-no-img {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px; opacity: 0.12;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+}
+.space-room-card.no-photo .space-room-overlay {
+  position: relative;
+  background: var(--dark4);
+  padding: 22px 24px;
+}
+.space-room-card.no-photo:hover { border-color: rgba(201,168,76,0.4); }
+
+.spaces-sub-header {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px; margin-top: 60px;
+  display: flex; align-items: center; gap: 16px;
+}
+.spaces-sub-header::after {
+  content: ''; flex: 1; height: 1px;
+  background: rgba(201,168,76,0.2);
+}
+
+/* INFO STRIP */
 .info-strip {
   background: var(--gold); padding: 50px 5%;
   display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -246,7 +351,7 @@ section { padding: 90px 5%; }
 .info-strip-item .i-val { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--dark); }
 .info-strip-item .i-sub { font-size: 12px; color: rgba(13,13,13,0.55); margin-top: 3px; }
 
-/* FOOTER *//*
+/* FOOTER */
 footer {
   background: #080808;
   padding: 50px 5% 30px;
@@ -272,11 +377,17 @@ footer {
   to { opacity: 1; }
 }
 
-/* MOBILE *//*
+/* MOBILE */
 @media (max-width: 680px) {
   .nav-links { display: none; }
   .hero h1 { font-size: 48px; }
   .menu-grid { grid-template-columns: 1fr; }
   .tab-btn { font-size: 11px; padding: 8px 14px; }
+  .spaces-main-dining .dining-photos {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .spaces-main-dining .dining-photos .photo-tall { grid-row: auto; height: 260px; }
+  .spaces-main-dining .dining-photos .photo-small { height: 200px; }
+  .spaces-rooms-grid { grid-template-columns: 1fr; }
 }
-*/
