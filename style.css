@@ -1,4 +1,4 @@
-
+/*
 :root {
   --gold: #c9a84c;
   --gold-light: #e8c97a;
@@ -21,6 +21,7 @@ body {
 }
 
 /* NAV */
+/*
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -51,6 +52,7 @@ nav {
 .nav-cta:hover { background: var(--gold-light); }
 
 /* HERO */
+/*
 .hero {
   min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
@@ -125,7 +127,8 @@ nav {
 .hero-info-item .label { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
 .hero-info-item .val { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); margin-top: 4px; }
 
-/* SECTION COMMONS */
+/* SECTION COMMONS*/
+/*
 section { padding: 90px 5%; }
 .sec-header { text-align: center; margin-bottom: 60px; }
 .sec-tag {
@@ -144,6 +147,7 @@ section { padding: 90px 5%; }
 }
 
 /* CATEGORY TABS */
+/*
 .menu-section { background: var(--dark2); }
 .tab-bar {
   display: flex; flex-wrap: wrap; gap: 8px;
@@ -162,6 +166,7 @@ section { padding: 90px 5%; }
 }
 
 /* MENU GRID */
+/*
 .menu-panel { display: none; }
 .menu-panel.active { display: block; animation: fadeIn 0.4s ease; }
 .menu-grid {
@@ -198,7 +203,7 @@ section { padding: 90px 5%; }
   color: var(--muted); font-weight: 400; display: block;
 }
 
-/* SET MENU */
+/* SET MENU *//*
 .set-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -231,7 +236,7 @@ section { padding: 90px 5%; }
 .set-price sup { font-size: 16px; }
 .set-note { font-size: 11px; color: #c0745a; margin-top: 6px; letter-spacing: 0.5px; }
 
-/* INFO STRIP */
+/* INFO STRIP *//*
 .info-strip {
   background: var(--gold); padding: 50px 5%;
   display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -241,7 +246,7 @@ section { padding: 90px 5%; }
 .info-strip-item .i-val { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--dark); }
 .info-strip-item .i-sub { font-size: 12px; color: rgba(13,13,13,0.55); margin-top: 3px; }
 
-/* FOOTER */
+/* FOOTER *//*
 footer {
   background: #080808;
   padding: 50px 5% 30px;
@@ -267,10 +272,11 @@ footer {
   to { opacity: 1; }
 }
 
-/* MOBILE */
+/* MOBILE *//*
 @media (max-width: 680px) {
   .nav-links { display: none; }
   .hero h1 { font-size: 48px; }
   .menu-grid { grid-template-columns: 1fr; }
   .tab-btn { font-size: 11px; padding: 8px 14px; }
 }
+*/
