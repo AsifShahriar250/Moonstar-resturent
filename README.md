@@ -1,10 +1,20 @@
 # Moonstar Restaurant
 
-A restaurant management web application with a Node.js backend, PostgreSQL database, and React-based admin panel.
+Moonstar Restaurant is a restaurant web project consisting of a customer-facing website, a backend API, and an admin dashboard.
 
-## Overview
+## Project Structure
 
-Moonstar Restaurant is designed to support restaurant operations through menu management, order processing, administrative authentication, and dashboard reporting.
+```text
+Moonstar-resturent/
+├── index.html             # Restaurant website entry point
+├── moon.css               # Website styles
+├── moon.js                # Website JavaScript
+├── style.css              # Additional styles
+├── images/                # Website images
+├── scripts/               # Project scripts
+├── backend/               # Express + TypeScript + Prisma API
+└── admin/                 # React + Vite + TypeScript dashboard
+```
 
 ## Technology Stack
 
@@ -16,237 +26,200 @@ Moonstar Restaurant is designed to support restaurant operations through menu ma
 - Prisma ORM
 - JWT-based authentication
 
-### Admin Panel
+### Admin Dashboard
 - React
 - TypeScript
 - Vite
+- ESLint
 
-### Additional integrations
-- Stripe payment integration
-- Cloudinary media storage
-
-> Integration availability and configuration depend on the current environment and enabled features.
+### Customer Website
+- HTML
+- CSS
+- JavaScript
 
 ## Features
 
-- Menu category and item management
-- Customer order creation
-- Order listing and order details
-- Order status management
-- Admin authentication and logout
+- Restaurant website interface
+- Admin authentication
+- Order management
+- Order status updates
 - Dashboard statistics
-- Revenue reporting for the last seven days
+- Revenue reporting
 - PostgreSQL database integration
-- Request validation and centralized error handling
-- Database-backed JWT session revocation
+- JWT token-version checks for token revocation
 
-## Project Structure
+## Requirements
 
-```text
-Moonstar-restaurant/
-├── backend/
-│   ├── prisma/
-│   │   ├── schema.prisma
-│   │   └── migrations/
-│   ├── src/
-│   │   ├── middleware/
-│   │   ├── routes/
-│   │   └── server.ts
-│   ├── package.json
-│   └── tsconfig.json
-├── admin/
-│   ├── src/
-│   │   ├── components/
-│   │   └── lib/
-│   └── package.json
-└── README.md
-```
-
-The exact structure may differ slightly from this overview.
-
-## Prerequisites
-
-Install the following before running the project:
+Install the following before starting:
 
 - Node.js and npm
 - PostgreSQL
 - Git
 
-A compatible Node.js version should be selected according to the project's package configuration.
+## Getting Started
 
-## Local Setup
-
-### 1. Clone the repository
+Clone the repository:
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd Moonstar-restaurant
+git clone https://github.com/AsifShahriar250/Moonstar-resturent.git
+cd Moonstar-resturent
 ```
 
-### 2. Configure the backend
+### 1. Configure the Backend
 
 ```bash
 cd backend
 npm install
 ```
 
-Create the backend environment file using the variable names required by the application. Configure the PostgreSQL connection, JWT authentication settings, and any enabled external integrations.
-
-Never commit real passwords, API keys, JWT secrets, or production credentials.
-
-### 3. Generate Prisma Client
+Create your local environment file using the example, if available:
 
 ```bash
-npx prisma generate
+cp .env.example .env
 ```
 
-Check the database migration status:
+Configure the required database connection and authentication settings in `backend/.env`. Use your own local credentials and secrets.
+
+Generate the Prisma client:
 
 ```bash
-npx prisma migrate status
+npm run db:generate
 ```
 
-Apply migrations only when the database and migration history have been reviewed and the migration is actually pending.
+Validate the Prisma schema:
 
-### 4. Start the backend
+```bash
+npm run db:validate
+```
+
+Configure PostgreSQL and apply the appropriate development migrations:
+
+```bash
+npm run db:migrate
+```
+
+Start the backend development server:
 
 ```bash
 npm run dev
 ```
 
-The local API is expected to run at:
+The backend is configured to serve the API at:
 
 `http://localhost:4000/api`
 
-### 5. Start the admin panel
+Check the root health endpoint at:
 
-Open another terminal:
+`http://localhost:4000/`
+
+### 2. Start the Admin Dashboard
+
+Open a second terminal:
 
 ```bash
-cd admin
+cd ~/Documents/Resturent/Moonstar-resturent/admin
 npm install
 npm run dev
 ```
 
-Use the local URL printed by Vite. Configure the frontend API base URL according to the project's existing configuration.
+Use the local URL printed by Vite in the terminal.
+
+Configure the admin frontend's API base URL as required by the project. Do not commit local environment files.
+
+### 3. Open the Customer Website
+
+Open `index.html` in a browser or serve the project root with a local static web server.
+
+Some website functionality may require the backend to be running.
+
+## Available Scripts
+
+### Backend
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm run typecheck` | Check TypeScript types |
+| `npm run build` | Compile the backend |
+| `npm start` | Run the compiled backend |
+| `npm run db:generate` | Generate the Prisma client |
+| `npm run db:validate` | Validate the Prisma schema |
+| `npm run db:migrate` | Run Prisma development migrations |
+
+### Admin
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Type-check and build for production |
+| `npm run lint` | Run ESLint |
+| `npm run preview` | Preview the production build |
 
 ## API Overview
 
-The following endpoints are implemented in the current backend codebase.
+The backend exposes REST API endpoints under `/api`.
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| GET | `/api/health` | API and database health |
-| GET | `/api/orders` | List orders |
-| GET | `/api/orders/:id` | Get an order |
-| POST | `/api/orders` | Create an order |
-| PATCH | `/api/orders/:id/status` | Update order status |
-| GET | `/api/dashboard/stats` | Dashboard statistics |
-| GET | `/api/dashboard/revenue` | Revenue report |
+Known endpoint groups include:
 
-Protected endpoints require valid authentication. The exact menu and authentication endpoints should be verified against the current source code.
+- Authentication
+- Orders
+- Dashboard statistics
+- Revenue reporting
 
-## Health Check
+Examples:
 
-```bash
-curl -i http://localhost:4000/api/health
-```
+- `GET /api/dashboard/stats`
+- `GET /api/dashboard/revenue`
+- `GET /api/orders`
+- `POST /api/orders`
+- `PATCH /api/orders/:id/status`
 
-A successful response should indicate that the API is running and the database is connected.
+Protected endpoints require valid authentication. Consult the backend source for the current request schemas, response formats, and authorization requirements.
 
-## Development Checks
+## Verification
 
-Backend type checking:
+Run backend checks:
 
 ```bash
 cd backend
 npm run typecheck
-```
-
-Backend production build:
-
-```bash
 npm run build
+npm run db:validate
 ```
 
-Admin production build:
+Build the admin dashboard:
 
 ```bash
 cd ../admin
 npm run build
+npm run lint
 ```
 
-Run these checks before submitting changes.
+The lint command should be run and any reported issues reviewed before release.
 
-## Security Notes
+## Security
 
-- Never commit `.env`, `config.env`, API keys, database passwords, or JWTs.
-- Keep production secrets in environment variables or a secret manager.
-- Use HTTPS in production.
-- Restrict administrative endpoints by role and permission.
-- Validate all incoming requests.
-- Enforce allowed order-status transitions on the backend.
-- Use secure authentication and session-revocation practices.
-- Apply rate limiting to authentication and other sensitive endpoints.
-- Review CORS settings before deployment.
-- Back up the database and test the restore procedure.
+- Never commit `.env`, `config.env`, passwords, JWT secrets, API keys, or database credentials.
+- Keep local environment files out of version control.
+- Use strong, unique secrets in production.
+- Use HTTPS in production deployments.
+- Validate input and enforce authorization on protected endpoints.
+- Review dependencies and security advisories before deployment.
+- Back up the production database regularly.
+- Rotate any credential accidentally exposed in Git history.
 
-## Known Verification Items
+## Roadmap
 
-Before declaring the application production-ready:
-
-- Verify login, logout, and token revocation end to end.
-- Verify authenticated dashboard requests.
-- Test every order-status transition.
-- Add automated API and integration tests.
-- Verify payment processing and payment webhooks, if enabled.
-- Verify environment configuration for a clean installation.
-- Run dependency and security audits.
-- Test the application using production build settings.
-
-## Future Development Roadmap
-
-### Phase 1 — Reliability
-- Complete authentication and authorization testing.
-- Add automated backend tests.
-- Validate order-status transitions.
-- Add consistent API response and error conventions.
-
-### Phase 2 — Restaurant Operations
-- Improve menu and category management.
-- Add inventory and stock tracking.
-- Add order filtering, search, and pagination.
-- Add printable receipts and invoices.
-- Add order cancellation and refund workflows.
-
-### Phase 3 — Payments and Customer Experience
-- Complete and test Stripe payment workflows.
-- Implement payment webhook verification and idempotency.
-- Add customer order tracking.
-- Add email or SMS notifications.
-- Add customer accounts and order history.
-
-### Phase 4 — Analytics
-- Add date-range revenue reports.
-- Track sales by menu item and category.
-- Add CSV/PDF report exports.
-- Add daily, weekly, and monthly analytics.
-
-### Phase 5 — Production Deployment
-- Dockerize the backend and admin application.
-- Configure production PostgreSQL.
-- Add CI/CD with automated build and test checks.
-- Add structured logging and monitoring.
-- Configure backups, HTTPS, and deployment documentation.
-
-## Contributing
-
-1. Create a feature branch.
-2. Make a focused change.
-3. Run the applicable checks.
-4. Review the changes for secrets and regressions.
-5. Submit a pull request.
+- Add automated unit and integration tests.
+- Enforce valid order status transitions.
+- Complete authentication and logout integration testing.
+- Review payment processing, webhooks, and refund handling.
+- Improve menu and inventory management.
+- Add reporting and data export capabilities.
+- Add Docker-based deployment and CI/CD.
+- Improve logging, monitoring, backups, and production security.
+- Optimize large frontend bundles through code splitting.
 
 ## License
 
-Choose and add an appropriate license before distributing this project publicly.
+No license has been specified yet. Add an appropriate license before allowing reuse or redistribution.

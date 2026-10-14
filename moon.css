@@ -233,33 +233,40 @@ section { padding: 90px 5%; }
 /* ===================== SPACES SECTION ===================== */
 .spaces-section { background: var(--dark2); padding: 90px 5%; }
 
-/* Main dining — full-width hero photo + two sub-photos */
+/* Main Dining Hall — consistent photo sizing */
 .spaces-main-dining {
   margin-bottom: 70px;
 }
+
 .spaces-main-dining .dining-photos {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 420px 260px;
-  gap: 6px;
+  grid-template-rows: 320px;
+  gap: 12px;
   margin-bottom: 28px;
 }
-.spaces-main-dining .dining-photos .photo-tall {
-  grid-row: 1 / 3;
-  position: relative; overflow: hidden;
-}
+
+.spaces-main-dining .dining-photos .photo-tall,
 .spaces-main-dining .dining-photos .photo-small {
-  position: relative; overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  height: 320px;
 }
+
 .spaces-main-dining .dining-photos img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.5s ease;
   display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
 }
+
 .spaces-main-dining .dining-photos .photo-tall:hover img,
 .spaces-main-dining .dining-photos .photo-small:hover img {
   transform: scale(1.04);
 }
+
 .dining-desc {
   display: flex; align-items: flex-start; gap: 40px; flex-wrap: wrap;
 }
@@ -382,11 +389,326 @@ footer {
   .hero h1 { font-size: 48px; }
   .menu-grid { grid-template-columns: 1fr; }
   .tab-btn { font-size: 11px; padding: 8px 14px; }
-  .spaces-main-dining .dining-photos {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-  .spaces-main-dining .dining-photos .photo-tall { grid-row: auto; height: 260px; }
-  .spaces-main-dining .dining-photos .photo-small { height: 200px; }
+  .spaces-main-dining .dining-photos { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .spaces-main-dining .dining-photos .photo-tall { grid-row: auto; height: 240px; }
+  .spaces-main-dining .dining-photos .photo-small { height: 240px; }
   .spaces-rooms-grid { grid-template-columns: 1fr; }
+}
+
+/* MODERN FOOD MENU CARDS */
+.menu-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  background: transparent;
+  border: none;
+}
+
+.menu-item {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  border-radius: 12px;
+  background: var(--dark3);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.menu-item:hover {
+  background: var(--dark3);
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+
+.menu-item-left {
+  padding: 0 16px;
+}
+
+.menu-item-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.menu-item-note {
+  margin-top: 6px;
+}
+
+.menu-item-price {
+  padding: 0 16px 16px;
+  text-align: left;
+}
+
+.menu-item-price .unit {
+  margin-top: 4px;
+}
+
+@media (max-width: 680px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .menu-item-left {
+    padding: 0 10px;
+  }
+
+  .menu-item-name {
+    font-size: 14px;
+  }
+
+  .menu-item-price {
+    padding: 0 10px 12px;
+    font-size: 14px;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 380px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FOOD MENU IMAGE */
+.menu-item-image {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 11px 11px 0 0;
+}
+
+@media (max-width: 680px) {
+  .menu-item-image {
+    height: 125px;
+  }
+}
+
+/* Set Menu Images */
+.set-menu-image {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 680px) {
+  .set-menu-image {
+    height: 150px;
+  }
+}
+
+/* Online ordering and checkout */
+.moon-order-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.moon-order-controls select {
+  min-width: 110px;
+  max-width: 100%;
+  padding: 9px;
+  border: 1px solid #d8c7ad;
+  background: #fff;
+  color: #222;
+  border-radius: 4px;
+}
+
+.moon-add-button,
+#moon-cart-toggle,
+#moon-place-order {
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 14px;
+  background: #8b1e24;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.moon-add-button:hover,
+#moon-cart-toggle:hover,
+#moon-place-order:hover {
+  filter: brightness(1.12);
+}
+
+#moon-cart-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9998;
+  box-shadow: 0 4px 18px #0003;
+}
+
+#moon-cart-count {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 23px;
+  height: 23px;
+  margin-left: 5px;
+  padding: 0 5px;
+  border-radius: 20px;
+  background: #fff;
+  color: #8b1e24;
+}
+
+#moon-cart-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow-y: auto;
+  padding: 24px 12px;
+  background: #0009;
+}
+
+#moon-cart-modal.is-open {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.moon-cart-dialog {
+  position: relative;
+  width: min(100%, 560px);
+  margin: auto;
+  padding: 26px;
+  border-radius: 10px;
+  background: #fff;
+  color: #222;
+  box-shadow: 0 12px 50px #0004;
+}
+
+.moon-cart-dialog h2,
+.moon-cart-dialog h3 {
+  margin-top: 0;
+}
+
+.moon-cart-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: 0;
+  background: transparent;
+  color: #333;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.moon-cart-empty {
+  padding: 18px 0;
+  color: #666;
+}
+
+.moon-cart-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.moon-cart-line-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-wrap: anywhere;
+}
+
+.moon-cart-line-info span {
+  color: #666;
+  font-size: 13px;
+}
+
+.moon-quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.moon-quantity button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fafafa;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#moon-cart-total {
+  margin: 18px 0;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+#moon-checkout-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+#moon-checkout-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
+#moon-checkout-form input,
+#moon-checkout-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font: inherit;
+}
+
+#moon-checkout-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+#moon-checkout-message {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+#moon-place-order:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.moon-order-status {
+  padding: 12px;
+  color: #8b1e24;
+}
+
+@media (max-width: 480px) {
+  #moon-cart-toggle {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .moon-cart-dialog {
+    padding: 22px 14px;
+  }
+
+  .moon-cart-line {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .moon-cart-line > strong {
+    grid-column: 1 / -1;
+    text-align: right;
+  }
 }
